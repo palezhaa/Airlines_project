@@ -1,0 +1,8 @@
+{% block content %}
+    <h1>List of cities:</h1>
+    <ul>
+        {% for city in cities %}
+            <li>{{ city.city_name }} ({{ city.state }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

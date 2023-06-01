@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0077be;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        .list {
+            text-align: center;
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 50px;
+        }
+
+        .tickets {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tickets ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            width: 50%;
+            flex-direction: column;
+        }
+
+        .tickets li {
+            padding: 10px;
+            border: 1px solid #0077be;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tickets li:hover {
+            background: #0077be;
+            color: white;
+            transition: .4s ease-in-out;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: block;
+            margin: 0 auto;
+            padding: 20px 50px;
+            font-size: 24px;
+            background-color: #0077be;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-item {
+            width: 100%;
+            height: 100px;
+        }
+
+        button:hover {
+            background-color: #005d8f;
+        }
+
+        .ticket-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 4px 4px 8px 4px rgba(34, 60, 80, 0.2);
+        }
+
+        .left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 30%;
+            padding: 10px;
+            border-right: 1px solid lightgray;
+        }
+
+        .right-col {
+            width: 70%;
+            padding: 10px;
+        }
+
+        .meta-info {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .timeline {
+            margin-left: 4px;
+            margin-right: 4px;
+            width: 100%;
+            height: 4px;
+            border-radius: 16px;
+            border: 1px solid #0077be;
+            background: #0077be;
+        }
+
+        .choose-ticket-btn {
+            padding: 12px 5px;
+            background: coral;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .pricing {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .choose-ticket-btn:hover {
+            background: #f35c28;
+            transition: 0.2s ease-in-out;
+        }
+
+        .dep {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+
+        .arriv {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toa {
+            margin: 0;
+        }
+
+        .tod {
+            margin: 0;
+        }
+        .top-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+{% block content %}
+    {% include 'header.html' %}
+    <header>
+        <h1>Search Results</h1>
+    </header>
+
+    <div class="tickets">
+        <ul class="list">
+            {% for shed in flight_data %}
+                <div class="ticket-wrapper">
+                    <div class="left-col">
+                        <div class="pricing"> {{ shed.cost }}
+                        </div>
+                        <div class="choose-ticket-btn">Выбрать билет</div>
+                    </div>
+                    <div class="right-col">
+                        <div class="top-meta">
+                            <h3>Дата вылета: {{ shed.flight_date }}</h3>
+                            <p>Осталось мест: {{ shed.seat_ava }}</p>
+                        </div>
+                        <div class="meta-info">
+                            <div class="dep">
+                                <p class="tod">🛫{{ shed.tod }}</p>
+                                <p style="margin: 0">{{ shed.flight_nbr__depart_code }}</p>
+                            </div>
+                            <div class="timeline"></div>
+                            <div class="arriv">
+                                <p class="toa">🛬{{ shed.toa }}</p>
+                                <p style="margin: 0">{{ shed.flight_nbr__ariv_code }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

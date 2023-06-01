@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Airlines</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+{% block content %}
+{% include 'header.html' %}
+<header>
+    <h1>Airlines</h1>
+    <p>Book your next flight with us!</p>
+</header>
+<div class="intro">
+    <p>Welcome to Airlines. We offer a wide selection of flights to various destinations all around the world. With our
+        easy-to-use search tool, you can quickly find and book your next flight in just a few clicks.</p>
+</div>
+
+<div class="search">
+    <form action="" method="get">
+        {% csrf_token %}
+        <input type="text" name="from" placeholder="From">
+        <input type="text" name="to" placeholder="To">
+        <input type="date" name="departure" placeholder="Departure date">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<button>Get started</button>
+{% endblock %}
+</body>
+</html>
